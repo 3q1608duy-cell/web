@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Text Rewrite & Content Fixing – Your Name</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Fast, professional rewriting, editing and content clean-up. Simple, clear text for blogs, emails, websites and more."
+  />
+
+  <style>
+    :root {
+      --bg: #050709;
+      --card: #0f172a;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.1);
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.3);
+      --radius-xl: 1.5rem;
+      --radius-lg: 1rem;
+      --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1e293b, #020617 55%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.98));
+      border-radius: 2rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0%, rgba(34,197,94,0.15), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(59,130,246,0.15), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      padding: 28px 24px 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 820px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #4ade80, #16a34a 45%, #0f766e);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.7), 0 12px 22px rgba(22,163,74,0.6);
+      color: #ecfdf5;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .logo-text-primary {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .logo-text-secondary {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(12px);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 0.74rem;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .hero-eyebrow span {
+      color: #bbf7d0;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .accent-text {
+      background: linear-gradient(120deg, #4ade80, #a7f3d0);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      max-width: 34rem;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 0;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 14px 25px rgba(34, 197, 94, 0.45);
+      text-decoration: none;
+    }
+
+    .btn-primary span {
+      font-size: 1rem;
+    }
+
+    .btn-ghost {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: transparent;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .hero-metas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-badge {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.8);
+      font-size: 0.7rem;
+    }
+
+    .hero-meta-strong {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 16px 18px 18px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.14), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.1), transparent 55%);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .feature {
+      background: rgba(15,23,42,0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(51,65,85,0.8);
+      padding: 10px 11px;
+      font-size: 0.8rem;
+    }
+
+    .feature-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .feature p {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 4px;
+    }
+
+    .badge {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(75,85,99,0.9);
+      color: var(--text-soft);
+    }
+
+    .badge-accent {
+      background: var(--accent-soft);
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
+    }
+
+    .quote {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .quote strong {
+      color: #e5e7eb;
+    }
+
+    .right-column .card {
+      margin-bottom: 14px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .metric {
+      flex: 1;
+      padding: 8px 9px;
+      border-radius: 0.9rem;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 0.78rem;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .contact {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .contact a {
+      color: #a7f3d0;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      margin-top: 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-form label {
+      font-size: 0.76rem;
+      color: var(--text-soft);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.95);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 1px solid rgba(34, 197, 94, 0.8);
+      border-color: rgba(34, 197, 94, 0.9);
+    }
+
+    .contact-form button {
+      margin-top: 4px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 0;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-start;
+      box-shadow: 0 10px 20px rgba(34,197,94,0.4);
+    }
+
+    footer {
+      position: relative;
+      padding: 0 24px 20px;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    footer a {
+      color: #a7f3d0;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="content">
+      <!-- Left side: hero & services -->
+      <section>
+        <header>
+          <div class="logo">
+            <div class="logo-mark">Y</div>
+            <div>
+              <div class="logo-text-primary">Your Name</div>
+              <div class="logo-text-secondary">Text Rewrite & Content Fixing</div>
+            </div>
+          </div>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span>Typically replies in under 1 hour</span>
+          </div>
+        </header>
+
+        <div>
+          <div class="hero-eyebrow">
+            <span>New</span> AI-assisted rewriting with human review
+          </div>
+          <h1>
+            Clean, clear, <span class="accent-text">rewritten text</span> in under 24 hours.
+          </h1>
+          <p class="subtitle">
+            I fix grammar, improve clarity, and polish your English so your message
+            sounds natural and professional — for emails, blogs, school work,
+            YouTube descriptions, and more.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#contact" class="btn-primary">
+              Get your text fixed
+              <span>↗</span>
+            </a>
+            <a href="#services" class="btn-ghost">
+              View services
+            </a>
+          </div>
+
+          <div class="hero-metas">
+            <div class="hero-meta-item">
+              <div class="hero-meta-badge">Fast delivery</div>
+              <span class="hero-meta-strong">300–800 words per order</span>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-badge">Perfect for</div>
+              <span>students · creators · small businesses</span>
+            </div>
+          </div>
+        </div>
+
+        <section id="services" style="margin-top: 26px;">
+          <div class="section-title">Services</div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="badge-row">
+                <span class="badge badge-accent">Rewrite & improve</span>
+                <span class="badge">Grammar & clarity</span>
+                <span class="badge">Tone adjustment</span>
+                <span class="badge">Email & blog edits</span>
+              </div>
+
+              <div class="feature-grid">
+                <article class="feature">
+                  <div class="feature-title">Rewrite & polish</div>
+                  <p>
+                    Send me your rough draft and I’ll return a clean version that keeps
+                    your meaning but sounds smoother, clearer, and more natural.
+                  </p>
+                </article>
+                <article class="feature">
+                  <div class="feature-title">YouTube & social text</div>
+                  <p>
+                    I create or fix YouTube descriptions, titles and short social captions
+                    that are easy to read and search-friendly.
+                  </p>
+                </article>
+                <article class="feature">
+                  <div class="feature-title">Study & work help</div>
+                  <p>
+                    I tidy up essays, reports and presentations so they read like fluent,
+                    confident English — perfect for school or work.
+                  </p>
+                </article>
+                <article class="feature">
+                  <div class="feature-title">Multi-style tone</div>
+                  <p>
+                    Need it formal, casual, friendly or serious? I adjust the tone to match
+                    your audience and brand.
+                  </p>
+                </article>
+              </div>
+
+              <p class="quote">
+                <strong>How it works:</strong> you send your text → I enhance it with AI
+                support → I manually check everything → you get a clean, ready-to-use version.
+              </p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Right side: social proof & contact form -->
+      <section class="right-column">
+        <div class="card">
+          <div class="card-inner">
+            <div class="section-title">Why work with me?</div>
+            <p class="quote">
+              I specialise in small, fast projects you can’t send to agencies:
+              short emails, captions, descriptions and quick rewrites. Perfect if you
+              just need your text to “sound right” — without overthinking it.
+            </p>
+            <div class="metric-row">
+              <div class="metric">
+                <strong>Fast</strong>
+                Typical turnaround under 24 hours for most small jobs.
+              </div>
+              <div class="metric">
+                <strong>Simple</strong>
+                Clear, direct communication and easy instructions.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="contact">
+          <div class="card-inner">
+            <div class="section-title">Contact</div>
+            <p class="contact">
+              You can message me on Fiverr (<strong>YourUsername</strong>) or use this form
+              to send your text and I’ll reply with a quote.
+            </p>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('This is a static demo form. Connect it to your email service before using.');">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" />
+              </div>
+              <div>
+                <label for="details">What do you need help with?</label>
+                <textarea id="details" name="details" rows="4"
+                  placeholder="Example: Please rewrite this 400-word email to sound more professional..."></textarea>
+              </div>
+              <button type="submit">Send request</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <span>© <span id="year"></span> Your Name. All rights reserved.</span>
+      <span>Built for Fiverr & freelance clients.</span>
+    </footer>
+  </main>
+
+  <script>
+    // Set current year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
